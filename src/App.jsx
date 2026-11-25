@@ -1,17 +1,14 @@
 import { useState } from 'react';
 
 function App() {
-  // 1. One state object for all form fields
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     isTermsAccepted: false,
   });
 
-  // State to store and display submitted details
   const [submittedData, setSubmittedData] = useState(null);
 
-  // 2. One common handleChange for text inputs and checkbox
   const handleChange = (e) => {
     const { name, type, value, checked } = e.target;
     setFormData((prev) => ({
@@ -20,13 +17,11 @@ function App() {
     }));
   };
 
-  // 3. Validation rule: all fields filled and checkbox checked
   const isFormValid =
     formData.name.trim() !== '' &&
     formData.email.trim() !== '' &&
     formData.isTermsAccepted;
 
-  // 4. Handle submit with preventDefault
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmittedData(formData);
@@ -73,13 +68,11 @@ function App() {
           </label>
         </div>
 
-        {/* 5. Submit button disabled until validation passes */}
         <button type="submit" disabled={!isFormValid}>
           Submit
         </button>
       </form>
 
-      {/* 6. Display submitted details below the form */}
       {submittedData && (
         <div className="result-card">
           <h3>Submitted Details</h3>
